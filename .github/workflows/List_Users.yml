@@ -14,7 +14,7 @@ jobs:
     - name: Fetch org members
       id: members
       run: |
-         name=json_var::curl --request GET --header "Authorization: Bearer ${{secrets.TOKEN}}" --header "Accept: application/vnd.github.v3+json" --url "https://api.github.com/orgs/scb-et/members"
+         name=json_var::curl --request GET --header "Authorization: Bearer ${{secrets.NON_STD_PRFL_TOKEN}}" --header "Accept: application/vnd.github.v3+json" --url "https://api.github.com/orgs/internal-test-organization/members"
     - name: use output
       run: |
         echo $json_var | jq '.[].login'
