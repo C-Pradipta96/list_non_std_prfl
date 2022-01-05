@@ -1,4 +1,4 @@
-name: List_User
+name: Fetch field from JSON response
 on:
   workflow_dispatch
 
