@@ -1,0 +1,22 @@
+name: List_User
+on:
+  workflow_dispatch
+
+jobs:
+  build:
+  
+    runs-on: ubuntu-latest
+    
+    steps:
+    
+    #First Step => Fetch "login" from response & store in a variable array declared within env
+    
+    - name: Fetch org members
+      id: members
+      run: |
+         name=json_var::curl --request GET --header "Authorization: Bearer ${{secrets.TOKEN}}" --header "Accept: application/vnd.github.v3+json" --url "https://api.github.com/orgs/scb-et/members"
+    - name: use output
+      run: |
+        echo $json_var | jq '.[].login'
+      env:
+        json_var: ${{ steps.members.outputs.json_var}}
